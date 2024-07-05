@@ -1,0 +1,119 @@
+<!-- 
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity and Water Bill Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Electricity and Water Bill Calculator by Hòa</h1>
+        
+        <label for="oldElectricity">Số điện cũ (kWh):</label>
+        <input type="number" id="oldElectricity" placeholder="Nhập số điện cũ (kWh)">
+        
+        <label for="newElectricity">Số điện mới (kWh):</label>
+        <input type="number" id="newElectricity" placeholder="Nhập số điện mới (kWh)">
+        
+        <label for="oldWater">Số nước cũ (m³):</label>
+        <input type="number" id="oldWater" placeholder="Nhập số nước cũ (m³)">
+        
+        <label for="newWater">Số nước mới (m³):</label>
+        <input type="number" id="newWater" placeholder="Nhập số nước mới (m³)">
+        
+        <label for="roomRent">Tiền phòng (VND):</label>
+        <input type="number" id="roomRent" placeholder="Nhập tiền phòng (VND)">
+        
+        <label for="garbageFee">Tiền rác (VND):</label>
+        <input type="number" id="garbageFee" placeholder="Nhập tiền rác (VND)">
+        
+        <label for="wifiFee">Tiền wifi (VND):</label>
+        <input type="number" id="wifiFee" placeholder="Nhập tiền wifi (VND)">
+        
+        <button onclick="calculateBill()">Tính toán</button>
+        
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        function calculateBill() {
+            const oldElectricity = parseFloat(document.getElementById('oldElectricity').value) || 0;
+            const newElectricity = parseFloat(document.getElementById('newElectricity').value) || 0;
+            const oldWater = parseFloat(document.getElementById('oldWater').value) || 0;
+            const newWater = parseFloat(document.getElementById('newWater').value) || 0;
+            const roomRent = parseFloat(document.getElementById('roomRent').value) || 0;
+            const garbageFee = parseFloat(document.getElementById('garbageFee').value) || 0;
+            const wifiFee = parseFloat(document.getElementById('wifiFee').value) || 0;
+
+            const electricityUsage = newElectricity - oldElectricity;
+            const waterUsage = newWater - oldWater;
+
+            const electricityRate = 2000; // Giá điện giả định (VND/kWh)
+            const waterRate = 15000; // Giá nước giả định (VND/m³)
+
+            const totalElectricityCost = electricityUsage * electricityRate;
+            const totalWaterCost = waterUsage * waterRate;
+
+            const totalCost = totalElectricityCost + totalWaterCost + roomRent + garbageFee + wifiFee;
+
+            document.getElementById('result').innerHTML = `
+                <p>Tổng số điện sử dụng: ${electricityUsage} kWh</p>
+                <p>Tổng số nước sử dụng: ${waterUsage} m³</p>
+                <p>Tổng tiền điện: ${totalElectricityCost.toLocaleString()} VND</p>
+                <p>Tổng tiền nước: ${totalWaterCost.toLocaleString()} VND</p>
+                <p>Tiền phòng: ${roomRent.toLocaleString()} VND</p>
+                <p>Tiền rác: ${garbageFee.toLocaleString()} VND</p>
+                <p>Tiền wifi: ${wifiFee.toLocaleString()} VND</p>
+                <p><strong>Tổng tiền cần thanh toán: ${totalCost.toLocaleString()} VND</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>
